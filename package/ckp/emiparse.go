@@ -12,7 +12,7 @@ type TypeMatchup struct {
 }
 
 type EmiCalcData struct {
-	Encounters   []interface{} `json:"encounters"`
+	Encounters   []Encounter   `json:"encounters"`
 	Pools        interface{}   `json:"encounter_pools"`
 	Items        []Item        `json:"items"`
 	Landmarks    []Landmark    `json:"landmarks"`

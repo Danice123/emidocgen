@@ -56,34 +56,29 @@ var genCmd = &cobra.Command{
 				})
 			case "move":
 				return overFolderFiles(path, func(name, path string) error {
-					return overFolderFiles(path, func(name, path string) error {
-						in, err := os.ReadFile(path)
-						if err != nil {
-							return err
-						}
-						var m ckp.PokeMove
-						err = yaml.Unmarshal(in, &m)
-						if err != nil {
-							return err
-						}
-						data.Moves = append(data.Moves, m)
-						return nil
-					})
-				})
-			case "landmark":
-				return overFolderFiles(path, func(name, path string) error {
 					in, err := os.ReadFile(path)
 					if err != nil {
 						return err
 					}
-					var l ckp.Landmark
-					err = yaml.Unmarshal(in, &l)
+					var ml map[string][]ckp.PokeMove
+					err = yaml.Unmarshal(in, &ml)
 					if err != nil {
 						return err
 					}
-					data.Landmarks = append(data.Landmarks, l)
+					data.Moves = append(data.Moves, ml["moves"]...)
 					return nil
 				})
+			case "landmarks.yml":
+				in, err := os.ReadFile(path)
+				if err != nil {
+					return err
+				}
+				var ll map[string][]ckp.Landmark
+				err = yaml.Unmarshal(in, &ll)
+				if err != nil {
+					return err
+				}
+				data.Landmarks = ll["landmarks"]
 			case "trainer":
 				return overFolderFiles(path, func(name, path string) error {
 					return overFolderFiles(path, func(name, path string) error {
@@ -111,17 +106,20 @@ var genCmd = &cobra.Command{
 					return err
 				}
 				data.Pools = d["encounter_pools"]
-			case "encounters.yml":
-				in, err := os.ReadFile(path)
-				if err != nil {
-					return err
-				}
-				var d map[string][]interface{}
-				err = yaml.Unmarshal(in, &d)
-				if err != nil {
-					return err
-				}
-				data.Encounters = d["encounters"]
+			case "encounter":
+				return overFolderFiles(path, func(name, path string) error {
+					in, err := os.ReadFile(path)
+					if err != nil {
+						return err
+					}
+					var e ckp.Encounter
+					err = yaml.Unmarshal(in, &e)
+					if err != nil {
+						return err
+					}
+					data.Encounters = append(data.Encounters, e)
+					return nil
+				})
 			case "items.yml":
 				in, err := os.ReadFile(path)
 				if err != nil {
@@ -156,9 +154,21 @@ var genCmd = &cobra.Command{
 			return data.Pokemon[i].Pokedex < data.Pokemon[j].Pokedex
 		})
 
+		sort.Slice(data.Moves, func(i, j int) bool {
+			return data.Moves[i].Order < data.Moves[j].Order
+		})
+
+		for i := range data.Moves {
+			data.Moves[i].Order = 0
+		}
+
 		sort.Slice(data.Trainers, func(i, j int) bool {
 			return data.Trainers[i].Order < data.Trainers[j].Order
 		})
+
+		for i := range data.Trainers {
+			data.Trainers[i].Order = 0
+		}
 
 		o, err := json.Marshal(data)
 		if err != nil {

@@ -8,5 +8,6 @@ type PokeMove struct {
 	Type     PokeType           `json:"type"`
 	Accuracy int                `json:"accuracy"`
 	Effects  map[string]float32 `json:"effects,omitempty"`
-	Extra    []string           `json:"extra,omitempty"`
+	Extra    []string           `json:"extra"`
+	Order    int                `json:"order,omitempty"`
 }

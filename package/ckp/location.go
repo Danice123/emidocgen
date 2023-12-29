@@ -9,8 +9,8 @@ type Landmark struct {
 }
 
 type MapPosition struct {
-	X      int `json:"x"`
-	Y      int `json:"y"`
+	X      int `json:"x,omitempty"`
+	Y      int `json:"y,omitempty"`
 	Width  int `json:"width,omitempty"`
 	Height int `json:"height,omitempty"`
 }

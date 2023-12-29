@@ -4,7 +4,9 @@ type Trainer struct {
 	Area  string        `json:"area"`
 	Name  string        `json:"name"`
 	Team  []interface{} `json:"team"`
-	Order int           `json:"order"`
+	Meta  string        `json:"meta,omitempty"`
+	B2b   bool          `json:"b2b,omitempty"`
+	Order int           `json:"order,omitempty"`
 }
 
 type TrainerPokemon struct {
