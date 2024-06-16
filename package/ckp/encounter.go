@@ -167,13 +167,13 @@ type EncounterPokemon struct {
 }
 
 type EncounterPools struct {
-	Fishing  map[string]FishingPools
-	Headbutt map[string][]EncounterPokemon
-	Rock     map[string][]EncounterPokemon
+	Fishing  map[string]FishingPools       `json:"fishing"`
+	Headbutt map[string][]EncounterPokemon `json:"headbutt"`
+	Rock     map[string][]EncounterPokemon `json:"rock"`
 }
 
 type FishingPools struct {
-	Old   map[TIME_OF_DAY][]EncounterPokemon
-	Good  map[TIME_OF_DAY][]EncounterPokemon
-	Super map[TIME_OF_DAY][]EncounterPokemon
+	Old   map[TIME_OF_DAY][]EncounterPokemon `json:"old"`
+	Good  map[TIME_OF_DAY][]EncounterPokemon `json:"good"`
+	Super map[TIME_OF_DAY][]EncounterPokemon `json:"super"`
 }
