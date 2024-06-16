@@ -1,4 +1,4 @@
-module emidocgen
+module github.com/Danice123/emidocgen
 
 go 1.21.4
 
