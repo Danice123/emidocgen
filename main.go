@@ -1,6 +1,6 @@
 package main
 
-import "emidocgen/cmd"
+import "github.com/Danice123/emidocgen/cmd"
 
 func main() {
 	cmd.Execute()

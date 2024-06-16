@@ -1,11 +1,12 @@
 package cmd
 
 import (
-	"emidocgen/package/ckp"
 	"encoding/json"
 	"fmt"
 	"os"
 	"sort"
+
+	"github.com/Danice123/emidocgen/package/ckp"
 
 	"github.com/spf13/cobra"
 	"gopkg.in/yaml.v3"
