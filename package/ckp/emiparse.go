@@ -12,14 +12,14 @@ type TypeMatchup struct {
 }
 
 type EmiCalcData struct {
-	Encounters   []Encounter   `json:"encounters"`
-	Pools        interface{}   `json:"encounter_pools"`
-	Items        []Item        `json:"items"`
-	Landmarks    []Landmark    `json:"landmarks"`
-	Pokemon      []Pokemon     `json:"pokemon"`
-	Moves        []PokeMove    `json:"moves"`
-	Trainers     []Trainer     `json:"trainers"`
-	TypeMatchups []TypeMatchup `json:"type_matchups"`
+	Encounters   []Encounter    `json:"encounters"`
+	Pools        EncounterPools `json:"encounter_pools"`
+	Items        []Item         `json:"items"`
+	Landmarks    []Landmark     `json:"landmarks"`
+	Pokemon      []Pokemon      `json:"pokemon"`
+	Moves        []PokeMove     `json:"moves"`
+	Trainers     []Trainer      `json:"trainers"`
+	TypeMatchups []TypeMatchup  `json:"type_matchups"`
 
 	PokeMap map[string]int `json:"-"`
 }

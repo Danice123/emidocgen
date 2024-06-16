@@ -101,12 +101,12 @@ var genCmd = &cobra.Command{
 				if err != nil {
 					return err
 				}
-				var d map[string]interface{}
+				var d ckp.EncounterPools
 				err = yaml.Unmarshal(in, &d)
 				if err != nil {
 					return err
 				}
-				data.Pools = d["encounter_pools"]
+				data.Pools = d
 			case "encounter":
 				return overFolderFiles(path, func(name, path string) error {
 					in, err := os.ReadFile(path)

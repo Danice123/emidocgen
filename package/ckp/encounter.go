@@ -165,3 +165,15 @@ type EncounterPokemon struct {
 	Level   int    `json:"level"`
 	Pokemon string `json:"pokemon"`
 }
+
+type EncounterPools struct {
+	Fishing  map[string]FishingPools
+	Headbutt map[string][]EncounterPokemon
+	Rock     map[string][]EncounterPokemon
+}
+
+type FishingPools struct {
+	Old   map[TIME_OF_DAY][]EncounterPokemon
+	Good  map[TIME_OF_DAY][]EncounterPokemon
+	Super map[TIME_OF_DAY][]EncounterPokemon
+}
